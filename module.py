@@ -97,7 +97,16 @@ def Vordsed_palgad(i:list,p:list):
     """Sorteeri palga järgi
     :param list i: Inimeste järend
     :param list p: Palgade järend
-    :rtype: int, list
+    :rtype: list, list
     """
-    dublikatid=[x for x in p if p.count(x)>1 ]
-    dublikatid=list(set(dublikatid))
+    dublikatid=[x for x in p if p.count(x)>1]
+    dublikatid=list(set(dublikatid)) #[1200, 2500,750,750,1200]->[1200,700]
+    for palk in dublikatid:
+        n=p.count(palk) #1200, n=2; 750, n=2
+        k=-1
+        print(palk)
+        for j in range(n):
+            k=p.index(palk,k+1)
+            nimi=i[k]
+            print(nimi,"saab kätte",palk)
+    return i,p
