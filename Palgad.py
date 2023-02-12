@@ -7,7 +7,7 @@ inimesed=["A","B","C","D","E"]
 while True:
     print(inimesed)
     print(palgad)
-    menu=int(input("valik:\n1-lisa andmed\n2-Kustuta andmed\n3-Suurim palk\n4-Vähem palk\n5-Sort\n6--"))
+    menu=int(input("valik:\n1-lisa andmed\n2-Kustuta andmed\n3-Suurim palk\n4-Vähem palk\n5-Sort\n6--\n7--/n8--"))
     if menu==0:
         break
     elif menu==1:
@@ -22,3 +22,9 @@ while True:
         print("vähem palk pn", palk, nimi)
     elif menu==5:
         inimesed,palgad=Soorteerimine(inimesed,palgad)
+    elif menu==6:
+         double(inimesed,palgad)
+    elif menu==7:
+       nimiPalk(inimesed,palgad)
+    elif menu==8:
+         palgadFilter(inimesed,palgad)

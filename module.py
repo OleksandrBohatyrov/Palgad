@@ -110,3 +110,55 @@ def Vordsed_palgad(i:list,p:list):
             nimi=i[k]
             print(nimi,"saab kätte",palk)
     return i,p
+
+def double(i:list,p:list):
+    """Found min Palg
+    :param: List i: Inimeste järjend
+    :param: List p: Palgade järjend
+    :rtype: int, str
+    """
+    dublikat=[o for o in p if p.count(o)>1]
+    dublikat =list(set(dublikat))
+    for palk in dublikat:
+        n=p.count(palk)
+        k=-1
+        print(palk)
+        for j in range(n):
+            k=p.index(palk,k+1)
+            nimi=i[k]
+            print(nimi)
+
+def nimiPalk(i:list, p:list):
+    """Inimese palga leidmine nime järgi
+    :param: List i: Inimeste järjend
+    :param: List p: Palgade järjend
+    :rtype: int, str
+    """
+    nimi=input("Print nimi ")
+    nimiList = []
+    for j in range(len(i)):
+        if i[j] == nimi:
+            nimiList.append(p[j])
+    
+    print (nimi,"palgad on",nimiList) 
+
+
+def palgadFilter(i:list, p:list):
+    """Kuva nimekiri inimestest (palgaga), kes saavad määratud summast rohkem/vähem.
+    :param: List i: Inimeste järjend
+    :param: List p: Palgade järjend
+    :rtype: int, str
+    """
+    a=int(input("1-surem, 2-vähem "))
+    palgad=int(input("print palk "))
+    list = []
+    if a == 1:
+        for j in range(len(i)):
+            if palgad<p[j]:
+                list.append((i[j], p[j]))
+        print(f"Rohkem kui {palgad} on {list}")
+    elif a == 2:
+        for j in range(len(i)):
+            if palgad>p[j]:
+                list.append((i[j], p[j]))
+        print(f"Vähem kui {palgad} on {list}")
