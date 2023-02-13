@@ -162,3 +162,134 @@ def palgadFilter(i:list, p:list):
             if palgad>p[j]:
                 list.append((i[j], p[j]))
         print(f"Vähem kui {palgad} on {list}")
+
+def tomami(i:list,p:list): 
+    """Kirjeldus...
+    :param list x: Inimeste järjend
+    :param list y: Palgade järjend
+    :rtype:str
+    """
+    kopia=p.copy()
+    for j in range(3):
+        ind=kopia.index(min(kopia))
+        print(f"{j+1} inimene - {j[ind]} saab väikse palk: {p[ind]}")
+        kopia.pop(ind)
+        kopia.insert(ind,max(p)+1)
+    kopia=p.copy()
+    for j in range(3):
+        ind=kopia.index(max(kopia))
+        print(f"{j+1} inimene - {j[ind]} saab suur palk: {p[ind]}")
+        kopia.pop(ind)
+        kopia.insert(ind,min(p)+1)
+
+def keskmine(i:list,p:list): 
+    """Kirjeldus...
+    :param list x: Inimeste järjend
+    :param list y: Palgade järjend
+    :rtype:str
+    """
+    kesk=sum(p)/len(p)
+    print(f"Keskmine palk on {kesk}")
+    for j in range(len(p)):
+        if p[j]>=kesk:
+            print(f"{p[j]} saab suurem kui keskmine palk, ta saab {p[j]}")
+
+def tulumaks(i:list,p:list): 
+    """Kirjeldus...
+    :param list x: Inimeste järjend
+    :param list y: Palgade järjend
+    :rtype:str
+    """
+    for j in range(0,len(p)):
+        if p[i]<500:
+            palk=p[j]
+        elif 500>=p[j]<=1200:
+            palk=(p[j]-500)-(p[j]-500)*0.2
+        elif 1200>p[j]>=2099:
+            palk=(500-(5/9)*(p[j]-1200))-(500-(5/9)*(p[j]-1200))*0.2
+        else:
+            palk=p[i]*0.2
+        print(f"{i[j]} on maksuvaba palk {palk}")
+
+def sorteerimine(i:list,p:list):
+    """Kirjeldus...
+    :param list x: Inimeste järjend
+    :param list y: Palgade järjend
+    :rtype: list, list
+    """
+    vali=input("Sorteeri nime (1) või palga järgi (2) ")
+    while vali not in ["1","2"]:
+        vali=input("Kirjuta ainult 1 või 2 ")
+    if vali=="1":
+        vali_2=input("A–Z või Z–A ").upper()
+        while vali_2 not in ["A-Z","Z-A"]:
+            vali_2=input("A–Z või Z–A ").upper()
+        for p in range(0,len(i)):
+            for o in range(0,len(i)):
+                if i[p]==i[o] and p!=o:
+                    for u in range(0,len(i)):
+                        i[o]+=f"_{u+1}"
+                        break
+        kopia=i.copy()
+        i.sort()
+        y1=[]
+        for j in range(0,len(i)):
+            ind=kopia.index(i[j])
+            y1.insert(i,p[ind])
+        y=y1
+        if vali_2=="Z-A":
+            i.reverse()
+            y.reverse()
+    else:
+        for p in range(0,len(i)):
+            for o in range(0,len(i)):
+                if y[p]<y[o]:
+                    abi=y[p]
+                    y[p]=y[o]
+                    y[o]=abi
+                    abi=i[p]
+                    i[p]=i[o]
+                    i[o]=abi
+        vali_2=input("Kasvav või kahanev järjekord ").title()
+        while vali_2 not in ["Kasvav","Kahanev"]:
+            vali_2=input("Kasvav või kahanev! ").title()
+        if vali_2=="Kahanev":
+            i.reverse()
+            p.reverse()
+    return i,p 
+
+def keskpop(x:list,y:list):
+    """Kirjeldus...
+    :param list x: Inimeste järjend
+    :param list y: Palgade järjend
+    :rtype: list, list
+    """
+    x1=[] 
+    y1=[]
+    keskmine=sum(y)/len(y)
+    print(f"Keskmine palk on {keskmine}")
+    for j in range(0,len(x)):
+        if y[j]>keskmine:
+            y1.append(y[j])
+            x1.append(x[j])
+    x=x1 
+    y=y1
+    return x,y
+
+def tint(i:list,p:list):
+    """Kirjeldus...
+    :param list i: Inimeste järjend
+    :param list p: Palgade järjend
+    :rtype: list, list
+    """
+    for j in range(0,len(i)):
+        i[j]=p[j].title()
+        p[j]=round(p[j],1) 
+        p[j]=int(p[j])
+    return i,p
+
+def year(i:list,p:list):
+    T=int(input("Mitu aastat? "))
+    for j in range(len(p)):
+        p[j]=p[j]*1.05**T
+    return i,p
