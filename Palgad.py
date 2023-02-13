@@ -1,13 +1,13 @@
 from module import *
 
 
-palgad=[1200,2500,750,395,1200]
-inimesed=["A","B","C","D","E"]
+palgad=[1200,2500,750,395,1700]
+inimesed=["A","B","C","D","A"]
 
 while True:
     print(inimesed)
     print(palgad)
-    menu=int(input("valik:\n1-lisa andmed\n2-Kustuta andmed\n3-Suurim palk\n4-Vähem palk\n5-Sort\n6--\n7--/n8--"))
+    menu=int(input("valik:\n1-lisa andmed\n2-Kustuta andmed\n3-Suurim palk\n4-Vähem palk\n5-Sort\n6--\n7-Otsi palka inimese nime järgi/n8-Nimekiri inimestest (palgaga), kes saavad määratud summast rohkem/vähem\n8--"))
     if menu==0:
         break
     elif menu==1:
@@ -28,3 +28,19 @@ while True:
        nimiPalk(inimesed,palgad)
     elif menu==8:
          palgadFilter(inimesed,palgad)
+    elif menu==9:
+        tomami(inimesed,palgad)
+    elif menu==10:
+        keskmine(inimesed,palgad)
+    elif menu==11:
+        tulumaks(inimesed,palgad)
+    elif menu==12:
+        sorteerimine(inimesed,palgad)
+    elif menu==13:
+        keskpop(inimesed,palgad)
+    elif menu==14:
+        tint(inimesed,palgad)
+    elif menu==15:
+        year(inimesed,palgad)
+    elif menu==16:
+        reversed
